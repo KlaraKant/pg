@@ -19,7 +19,8 @@ def cislo_text(cislo):
         desitky = {2: "Dvacet", 3: "Třicet", 4: "Čtyřicet", 5: "Padesát", 6: "Šedesát", 7: "Sedmdesát", 8: "Osmdesát", 9: "Devadesát"}
         jednotky_k_desitce = {1: "jedna", 2: "dva", 3: "tři", 4: "čtyři", 5: "pět", 6: "šest", 7: "sedm", 8: "osm", 9: "devět"}
         
-        bez_zbytku = cislo // 10 
+        bez_zbytku = cislo // 10
+    
         se_zbytkem = cislo % 10
         
         if se_zbytkem == 0:
