@@ -7,7 +7,7 @@ def cislo_text(cislo):
     if cislo == 100:
         return("Sto")
     
-    if cislo > 1 and cislo < 11:
+    if cislo >= 1 and cislo < 11:
         jednotky = {1: "Jedna", 2: "Dva", 3: "Tři", 4: "Čtyři", 5: "Pět", 6: "Šest", 7: "Sedm", 8: "Osm", 9: "Devět", 10: "Deset"}
         return jednotky[cislo]
     
@@ -27,7 +27,11 @@ def cislo_text(cislo):
             return desitky[bez_zbytku]
         else:
             return desitky[bez_zbytku] + " " + jednotky_k_desitce[se_zbytkem]
+        
+    if cislo < 0 or cislo > 100:
+        return ("Číslo není v seznamu")
 
+    
 
 if __name__ == "__main__":
     cislo = input("Zadej číslo: ")
