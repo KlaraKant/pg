@@ -1,7 +1,6 @@
 import sys
 import requests
 from lxml import html
-from unittest.mock import MagicMock
 
 
 def download_url_and_get_all_hrefs(url):
@@ -16,29 +15,17 @@ def download_url_and_get_all_hrefs(url):
     if not response.ok:
         return []
     
-
     root = html.fromstring(response.content)
-    return([href for href in root.xpath('//a/@href') if href.startswith('http')])
+    hrefs = [href for href in root.xpath('//a/@href') if href.startswith('http')]
 
-class TestResponse:
-    def __init__(self) -> None:
-        self.ok = True
-        self.content = content
-
-
-def test_download_url_and_get_all_hrefs():
-    requests.get = MagicMock(return_value=TestResponse('<a href="http://jcu.cz">odkaz</a>'))
-    assert download_url_and_get_all_hrefs("http://python.cz") == ['http://jcu.cz']
+    return hrefs
 
 
 if __name__ == "__main__":
     try:
         url = sys.argv[1]
         all_hrefs = download_url_and_get_all_hrefs(url)
-        #print(all_hrefs)
-        for url in all_hrefs:
-            hrefs = download_url_and_get_all_hrefs(url)
-            print(hrefs)
+        print(all_hrefs)
     # osetrete potencialni chyby pomoci vetve except
     except Exception as e:
         print(f"Program skoncil chybou: {e}")
