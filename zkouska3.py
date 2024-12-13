@@ -15,7 +15,7 @@ class Shape(ABC):
         pass
 
 class Rectangle(Shape): #nová třída, která dědí z Shape
-    def __init__(self, width, height): #má argumenty width, height 
+    def __init__(self, width, height): #má atributy width, height 
         self.width = width
         self.height = height
 
@@ -23,7 +23,7 @@ class Rectangle(Shape): #nová třída, která dědí z Shape
         return self.width * self.height #výpočet obsahu obdélníku, vrací obsah obdélníku 
 
 class Circle(Shape): # nová třída, která dědí z Shape
-    def __init__(self, radius): #má argumenty radius
+    def __init__(self, radius): #má atributy radius
         self.radius = radius
 
     def area(self):
