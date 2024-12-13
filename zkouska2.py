@@ -24,15 +24,15 @@ user_names = {
 }
 
 def fetch_and_save_data():
-    response = requests.get(url) #načte data z URL
+    response = requests.get(url) #načte data z URL, výsledek uložen do response 
     if not response.ok: #zkouška odpovědi
-        return False 
+        return False #pokud je odpověď špatná, vrátí False
     
     data = response.json() #načte data ve formátu JSON
     
-    for uživatel in data: #přidá uživatelské jméno podle userId
-        user_id = uživatel.get("userId")
-        uživatel["userName"] = user_names.get(user_id)  #přidá username
+    for uživatel in data: #prochází všechna data, každý prvek seznamu je uložen do proměnné uživatel
+        user_id = uživatel.get("userId") #získává hodnotu userID
+        uživatel["userName"] = user_names.get(user_id)  #přidá klíč username ze seznamu
     
     with open("data.json", "w") as file:  #uloží data do souboru `data.json`
         file.write(json.dumps(data, indent=4))  #uložíme data do souboru ve formátu JSON

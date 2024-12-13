@@ -5,7 +5,7 @@
 # Pokud seznam obsahuje číslo 10, ukončete zpracování seznamu a vraťte dosud vytvořený seznam.
 
 def process_numbers(numbers):
-    vysledky = []
+    vysledky = [] #vytváří seznam výsledky 
     for cislo in numbers: #procházení čísel v seznamu "numbers"
         if cislo == 10:
             return vysledky #pokud je číslo 10, ukončí funkci a vrátí dosud vytvořený seznam

@@ -7,7 +7,7 @@
 
 from abc import ABC, abstractmethod
 
-pí = 3.14159
+pí = 3.14159 #definuji konstantu
 
 class Shape(ABC):
     @abstractmethod
