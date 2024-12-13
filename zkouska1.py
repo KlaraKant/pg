@@ -5,13 +5,13 @@
 # Pokud seznam obsahuje číslo 10, ukončete zpracování seznamu a vraťte dosud vytvořený seznam.
 
 def process_numbers(numbers):
-    vysledky = [] #vytváří seznam výsledky 
-    for cislo in numbers: #procházení čísel v seznamu "numbers"
+    vysledky = [] 
+    for cislo in numbers: 
         if cislo == 10:
-            return vysledky #pokud je číslo 10, ukončí funkci a vrátí dosud vytvořený seznam
+            return vysledky 
         if cislo > 5:
-            vysledky += [cislo*2] #pokud je číslo větší než 5, vynásobí 2 a zanese do seznamu 
-    return vysledky #vrátí nově vytvořený seznam výsledků
+            vysledky += [cislo*2]  
+    return vysledky 
 
 
 def test_process_numbers():

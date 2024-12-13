@@ -24,20 +24,20 @@ user_names = {
 }
 
 def fetch_and_save_data():
-    response = requests.get(url) #načte data z URL, výsledek uložen do response 
-    if not response.ok: #zkouška odpovědi
-        return False #pokud je odpověď špatná, vrátí False
+    response = requests.get(url) 
+    if not response.ok: 
+        return False 
     
-    data = response.json() #načte data ve formátu JSON
+    data = response.json() 
     
-    for uživatel in data: #prochází všechna data, každý prvek seznamu je uložen do proměnné uživatel
-        user_id = uživatel.get("userId") #získává hodnotu userID
-        uživatel["userName"] = user_names.get(user_id)  #přidá klíč username ze seznamu
+    for uživatel in data: 
+        user_id = uživatel.get("userId") 
+        uživatel["userName"] = user_names.get(user_id)  
     
-    with open("data.json", "w") as file:  #uloží data do souboru `data.json`
-        file.write(json.dumps(data, indent=4))  #uložíme data do souboru ve formátu JSON
+    with open("data.json", "w") as file:  
+        file.write(json.dumps(data, indent=4))  
     
-    return True  #úspěšné zpracování
+    return True 
   
 # Pytest testy pro Příklad 2
 from unittest.mock import patch, MagicMock, mock_open

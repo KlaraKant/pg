@@ -7,27 +7,27 @@
 
 from abc import ABC, abstractmethod
 
-pí = 3.14159 #definuji konstantu
+pí = 3.14159 
 
 class Shape(ABC):
     @abstractmethod
     def area(self):
         pass
 
-class Rectangle(Shape): #nová třída, která dědí z Shape
-    def __init__(self, width, height): #má atributy width, height 
+class Rectangle(Shape): 
+    def __init__(self, width, height): 
         self.width = width
         self.height = height
 
     def area(self):
-        return self.width * self.height #výpočet obsahu obdélníku, vrací obsah obdélníku 
+        return self.width * self.height 
 
-class Circle(Shape): # nová třída, která dědí z Shape
-    def __init__(self, radius): #má atributy radius
+class Circle(Shape): 
+    def __init__(self, radius): 
         self.radius = radius
 
     def area(self):
-        return pí*self.radius**2  #používá konstantu pí, kterou jsem definovala nahoře, vrací průměr kruhu 
+        return pí*self.radius**2 
 
 from unittest.mock import patch, MagicMock, mock_open
 
