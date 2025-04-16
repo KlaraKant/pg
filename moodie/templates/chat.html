@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Konverzace s Moodiem</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container fade-in">
+        <img src="{{ url_for('static', filename='hedgehog.png') }}" class="hedgehog">
+        <p>{{ message }}</p>
+
+        <form method="POST">
+            {% if next_step == "mood" %}
+                <button name="mood" value="happy">😊</button>
+                <button name="mood" value="neutral">😐</button>
+                <button name="mood" value="sad">😢</button>
+            {% elif next_step == "neutral_options" %}
+                <button name="mood" value="neutral" name="submood" value="yes">Ano, sem s tím!</button>
+                <button name="mood" value="neutral" name="submood" value="no">Ne, nepotřebuji</button>
+            {% elif next_step == "sad_options" %}
+                <button name="mood" value="sad" name="submood" value="yes">Ano, mám</button>
+                <button name="mood" value="sad" name="submood" value="no">Ne, dnes ne</button>
+            {% elif next_step == "sad_followup" %}
+                <button name="mood" value="sad" name="submood" value="yes" name="followup" value="calm">Pohodové</button>
+                <button name="mood" value="sad" name="submood" value="yes" name="followup" value="active">Energické</button>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
