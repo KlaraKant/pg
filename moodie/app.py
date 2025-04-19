@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from moodie.moodie import User, Moodie, MoodInput, ConversationFlow
+from moodie import User, Moodie, MoodInput, ConversationFlow 
 
 app = Flask(__name__)
 app.secret_key = "tajny_klic"
