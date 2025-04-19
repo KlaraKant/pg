@@ -17,8 +17,8 @@ class MoodRecommendation:
                 return "Pokud máš energii, zkus si zacvičit, nebo se pořádně protáhnout. V těle se vyplaví hormony štěstí a zvedne ti to náladu!"
             elif submood == "no":
                 return "V pořádku. Kdybys cokoli potřeboval/a, jsem tady pro Tebe!"
-            #else:
-                #return "Mohu udělat něco pro to, aby ses cítil/a lépe?"
+            else:
+                return "Mohu udělat něco pro to, aby ses cítil/a lépe?"
 
         if mood == "sad":
             if submood == "yes":
