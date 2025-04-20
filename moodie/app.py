@@ -1,14 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from moodie import User, Moodie, MoodInput, ConversationFlow 
+from moodie import Moodie
 
 app = Flask(__name__)
-app.secret_key = "tajny_klic"
+app.secret_key = 'tajny_klic'  # pro session
 
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        username = request.form["username"]
-        session["username"] = username
+        session["username"] = request.form["username"]
         return redirect(url_for("chat"))
     return render_template("index.html")
 
@@ -60,10 +59,22 @@ def chat():
         next_step=next_step
     )
 
-@app.route("/reset", methods=["POST"])
-def reset():
-    session.clear()
-    return redirect(url_for("index"))
+
+    #greeting = moodie.get_greeting()
+    #return render_template("chat.html", username=username, message=greeting, next_step="mood")
+
+def determine_next(mood, submood, followup):
+    if mood == "neutral" and not submood:
+        return "neutral_options"
+    if mood == "neutral" and submood:
+        return None
+    if mood == "sad" and not submood:
+        return "sad_options"
+    if mood == "sad" and submood == "yes" and not followup:
+        return "sad_followup"
+    if mood == "sad" and (submood == "no" or followup):
+        return None
+    return None
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
