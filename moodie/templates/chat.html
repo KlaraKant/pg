@@ -12,20 +12,28 @@
 
         <form method="POST">
             {% if next_step == "mood" %}
-                <button name="mood" value="happy">😊</button>
-                <button name="mood" value="neutral">😐</button>
-                <button name="mood" value="sad">😢</button>
+                <button type="submit" name="mood" value="happy">😊</button>
+                <button type="submit" name="mood" value="neutral">😐</button>
+                <button type="submit" name="mood" value="sad">😢</button>
+
             {% elif next_step == "neutral_options" %}
-                <button name="mood" value="neutral" name="submood" value="yes">Ano, sem s tím!</button>
-                <button name="mood" value="neutral" name="submood" value="no">Ne, nepotřebuji</button>
+                <input type="hidden" name="mood" value="neutral">
+                <button type="submit" name="submood" value="yes">Ano, sem s tím!</button>
+                <button type="submit" name="submood" value="no">Ne, nepotřebuji</button>
+
             {% elif next_step == "sad_options" %}
-                <button name="mood" value="sad" name="submood" value="yes">Ano, mám</button>
-                <button name="mood" value="sad" name="submood" value="no">Ne, dnes ne</button>
+                <input type="hidden" name="mood" value="sad">
+                <button type="submit" name="submood" value="yes">Ano, mám</button>
+                <button type="submit" name="submood" value="no">Ne, dnes ne</button>
+
             {% elif next_step == "sad_followup" %}
-                <button name="mood" value="sad" name="submood" value="yes" name="followup" value="calm">Pohodové</button>
-                <button name="mood" value="sad" name="submood" value="yes" name="followup" value="active">Energické</button>
+                <input type="hidden" name="mood" value="sad">
+                <input type="hidden" name="submood" value="yes">
+                <button type="submit" name="followup" value="calm">Pohodové</button>
+                <button type="submit" name="followup" value="active">Energické</button>
             {% endif %}
         </form>
+
         <form action="{{ url_for('reset') }}" method="post">
             <button type="submit">Začít znovu</button>
         </form>
