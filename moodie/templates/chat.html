@@ -26,6 +26,9 @@
                 <button name="mood" value="sad" name="submood" value="yes" name="followup" value="active">Energické</button>
             {% endif %}
         </form>
+        <form action="{{ url_for('reset') }}" method="post">
+            <button type="submit">Začít znovu</button>
+        </form>
     </div>
 </body>
 </html>
