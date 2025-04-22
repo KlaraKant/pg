@@ -56,16 +56,29 @@ class ConversationFlow:
         return None
 
 class Moodie:
-    def __init__(self, user: User):
+    def __init__(self, user):
         self.user = user
-        self.recommender = MoodRecommendation()
-
-    def greet(self):
-        return f"Ahoj {self.user.name}, jak se dnes cítíš?"
 
     def get_response(self):
-        return self.recommender.get_recommendation(
-            self.user.mood,
-            self.user.submood,
-            self.user.followup
-        )
+        if not self.user.mood:
+            return "Ahoj, jak se dnes cítíš?"
+        if self.user.mood == "happy":
+            return "To je skvělé! Uděláš dnes něco, co tě baví?"
+        if self.user.mood == "neutral":
+            if not self.user.submood:
+                return "Máš chuť si popovídat nebo nechat být?"
+            if self.user.submood == "yes":
+                return "Jsem tu pro tebe! Co tě dnes potěšilo?"
+            else:
+                return "Rozumím, někdy je fajn jen tak být. 🍃"
+        if self.user.mood == "sad":
+            if not self.user.submood:
+                return "Mrzí mě, že se necítíš dobře. Chceš si o tom promluvit?"
+            if self.user.submood == "yes":
+                if not self.user.followup:
+                    return "Jaký druh konverzace by ti teď pomohl – klidný nebo aktivní?"
+                else:
+                    return "Jsem tady pro tebe. 💙"
+            else:
+                return "Rozumím. Kdybys změnil/a názor, jsem tu."
+        return "Něco se pokazilo, zkus to prosím znovu."
