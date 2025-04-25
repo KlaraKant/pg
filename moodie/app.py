@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from moodie import Moodie, User, MoodInput, ConversationFlow  # Ujisti se, že tyto třídy máš správně
+from moodie import Moodie, User, MoodInput, ConversationFlow  
 
 app = Flask(__name__)
 app.secret_key = 'tajny_klic'  # nutné pro session
