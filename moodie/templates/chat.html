@@ -2,33 +2,37 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <title>Konverzace s Moodiem</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Moodie - Rozhovor</title>
 </head>
 <body>
-    <div class="container fade-in">
-        <img src="{{ url_for('static', filename='hedgehog.png') }}" class="hedgehog">
-        <p>{{ message }}</p>
+    <img src="{{ url_for('static', filename='hedgehog.png') }}" alt="Moodie" width="100">
+    <h2>{{ message }}</h2>
 
-        <form method="POST">
-            {% if next_step == "mood" %}
-                <button name="mood" value="happy">😊</button>
-                <button name="mood" value="neutral">😐</button>
-                <button name="mood" value="sad">😢</button>
-        
-            {% elif next_step == "neutral_options" %}
-                <button type="submit" name="submood" value="yes">Ano, sem s tím!</button>
-                <button type="submit" name="submood" value="no">Ne, nepotřebuji</button>
-        
-            {% elif next_step == "sad_options" %}
-                <button type="submit" name="submood" value="yes">Ano, mám</button>
-                <button type="submit" name="submood" value="no">Ne, dnes ne</button>
-        
-            {% elif next_step == "sad_followup" %}
-                <button type="submit" name="followup" value="calm">Pohodové</button>
-                <button type="submit" name="followup" value="active">Energické</button>
-            {% endif %}
+    {% if next_step == "mood" %}
+        <form method="post">
+            <button type="submit" name="mood" value="happy">😊</button>
+            <button type="submit" name="mood" value="neutral">😐</button>
+            <button type="submit" name="mood" value="sad">😢</button>
         </form>
-    </div>
+    {% elif next_step == "neutral_options" %}
+        <form method="post">
+            <input type="hidden" name="mood" value="{{ mood }}">
+            <button type="submit" name="submood" value="yes">Ano, sem s tím!</button>
+            <button type="submit" name="submood" value="no">Ne, nepotřebuji</button>
+        </form>
+    {% elif next_step == "sad_options" %}
+        <form method="post">
+            <input type="hidden" name="mood" value="{{ mood }}">
+            <button type="submit" name="submood" value="yes">Ano, mám</button>
+            <button type="submit" name="submood" value="no">Ne, dnes ne</button>
+        </form>
+    {% elif next_step == "sad_followup" %}
+        <form method="post">
+            <input type="hidden" name="mood" value="{{ mood }}">
+            <input type="hidden" name="submood" value="{{ submood }}">
+            <button type="submit" name="followup" value="calm">Pohodové</button>
+            <button type="submit" name="followup" value="active">Energické</button>
+        </form>
+    {% endif %}
 </body>
 </html>
