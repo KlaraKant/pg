@@ -15,7 +15,7 @@ def index():
             session["submood"] = None
             session["followup"] = None
             return redirect(url_for("chat"))
-    return render_template("index.html")
+    return render_template("index.html", greeting=moodie.greet())
 
 @app.route("/chat", methods=["GET", "POST"])
 def chat():
