@@ -37,7 +37,10 @@ def chat():
             session["followup"] = mood_input.followup
             user.followup = mood_input.followup
 
-    message = moodie.get_response()
+        if not mood and not submood and not followup:
+            message = f"Ahoj {username}, jak se dnes cítíš?"
+        else:
+            message = moodie.get_response()
     next_step = flow.determine_next_step(user.mood, user.submood, user.followup)
 
     return render_template(
