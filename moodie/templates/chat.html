@@ -2,32 +2,33 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <title>Konverzace s Moodiem</title>
+    <title>Chat s Moodiem</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <div class="container fade-in">
         <img src="{{ url_for('static', filename='hedgehog.png') }}" class="hedgehog">
-        <p>{{ message }}</p>
+        <p class="text">{{ message }}</p>
 
         <form method="POST">
             {% if next_step == "mood" %}
                 <button name="mood" value="happy">😊</button>
                 <button name="mood" value="neutral">😐</button>
                 <button name="mood" value="sad">😢</button>
-        
             {% elif next_step == "neutral_options" %}
-                <button type="submit" name="submood" value="yes">Ano, sem s tím!</button>
-                <button type="submit" name="submood" value="no">Ne, nepotřebuji</button>
-        
+                <button name="submood" value="yes">Ano, sem s tím!</button>
+                <button name="submood" value="no">Ne, nepotřebuji</button>
             {% elif next_step == "sad_options" %}
-                <button type="submit" name="submood" value="yes">Ano, mám</button>
-                <button type="submit" name="submood" value="no">Ne, dnes ne</button>
-        
+                <button name="submood" value="yes">Ano, mám</button>
+                <button name="submood" value="no">Ne, dnes ne</button>
             {% elif next_step == "sad_followup" %}
-                <button type="submit" name="followup" value="calm">Pohodové</button>
-                <button type="submit" name="followup" value="active">Energické</button>
+                <button name="followup" value="calm">Pohodové</button>
+                <button name="followup" value="active">Energické</button>
             {% endif %}
+        </form>
+
+        <form method="POST" action="{{ url_for('reset') }}">
+            <button type="submit">Začít znovu</button>
         </form>
     </div>
 </body>
