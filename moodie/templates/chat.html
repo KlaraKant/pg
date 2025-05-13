@@ -8,7 +8,13 @@
 <body>
     <div class="container fade-in">
         <img src="{{ url_for('static', filename='hedgehog.png') }}" class="hedgehog">
-        <p class="text">{{ message }}</p>
+        <p>
+            {% if message %}
+                {{ message }}
+            {% else %}
+                Něco se pokazilo, zkus to prosím znovu.
+            {% endif %}
+        </p>
 
         <form method="POST">
             {% if next_step == "mood" %}
