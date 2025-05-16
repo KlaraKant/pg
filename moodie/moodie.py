@@ -34,7 +34,10 @@ class Moodie:
         elif mood == "neutral":
             if not sub:
                 return "Mohu udělat něco pro to, aby ses cítil/a lépe?"
-            return "V pořádku. Kdybys cokoli potřeboval/a, jsem tady pro Tebe!"
+            elif sub.strip().lower() == "yes":
+                return "Pokud máš energii, zkus si zacvičit, nebo se pořádně protáhnout. V těle se vyplaví hormony štěstí a zvedne ti to náladu!"
+            else:
+                return "V pořádku. Kdybys cokoli potřeboval/a, jsem tady pro Tebe!"
         elif mood == "sad":
             if not sub:
                 return "Mrzí mě, že se takto cítíš. Máš náladu s tím něco dělat?"
